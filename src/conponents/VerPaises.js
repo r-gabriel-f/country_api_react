@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../conponents/VerPaises.css";
+import { InfoPaises } from "./InfoPaises";
 
 const VerPaises = () => {
   const [data, setData] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [count, setCount] = useState(1);
+  const [selectedCountry, setSelectedCountry] = useState(null);
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
@@ -21,7 +23,9 @@ const VerPaises = () => {
         auxpais.name.common.toLowerCase().includes(searchTerm.toLowerCase())
       )
     : [];
-
+  const handleInfoClick = (pais) => {
+    setSelectedCountry(pais);
+  };
   return (
     <section>
       <div className="input-group">
@@ -64,13 +68,14 @@ const VerPaises = () => {
                 <td>{auxpais.continents}</td>
                 <td>{auxpais.population}</td>
                 <td>
-                  <a href="#">info</a>
+                  <a href="#" onClick={() => handleInfoClick(auxpais)}>info</a>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      {selectedCountry && <InfoPaises pais={selectedCountry}></InfoPaises>}
     </section>
   );
 };
