@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "../conponents/VerPaises.css";
+import { Link } from "react-router-dom";
 
 export const VerRegion = () => {
   const [data, setData] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
   const [count, setCount] = useState(1);
+  const [selectedCountry, setSelectedCountry] = useState(null);
+
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
@@ -30,6 +33,9 @@ export const VerRegion = () => {
           (selectedRegion === "" || auxpais.continents.includes(selectedRegion))
       )
     : [];
+  const handleInfoClick = (pais) => {
+    setSelectedCountry(pais);
+  };
 
   return (
     <section>
@@ -122,7 +128,12 @@ export const VerRegion = () => {
                 <td>{auxpais.capital}</td>
                 <td>{auxpais.population}</td>
                 <td>
-                  <a href="">info</a>
+                  <Link
+                    to={`/pais/${auxpais.name.common}`}
+                    onClick={() => handleInfoClick(auxpais)}
+                  >
+                    info
+                  </Link>
                 </td>
               </tr>
             ))}

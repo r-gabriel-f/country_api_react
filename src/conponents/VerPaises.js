@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../conponents/VerPaises.css";
-import { InfoPaises } from "./InfoPaises";
+
+import { Link } from "react-router-dom";
 
 const VerPaises = () => {
   const [data, setData] = useState(null);
@@ -26,6 +27,7 @@ const VerPaises = () => {
   const handleInfoClick = (pais) => {
     setSelectedCountry(pais);
   };
+
   return (
     <section>
       <div className="input-group">
@@ -68,14 +70,18 @@ const VerPaises = () => {
                 <td>{auxpais.continents}</td>
                 <td>{auxpais.population}</td>
                 <td>
-                  <a href="#" onClick={() => handleInfoClick(auxpais)}>info</a>
+                  <Link
+                    to={`/pais/${auxpais.name.common}`}
+                    onClick={() => handleInfoClick(auxpais)}
+                  >
+                    info
+                  </Link>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      {selectedCountry && <InfoPaises pais={selectedCountry}></InfoPaises>}
     </section>
   );
 };
