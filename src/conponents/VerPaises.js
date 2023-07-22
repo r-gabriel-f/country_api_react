@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "../conponents/VerPaises.css";
-
 import { Link } from "react-router-dom";
 
 const VerPaises = () => {
   const [data, setData] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(1); // Track the current page
   const [selectedCountry, setSelectedCountry] = useState(null);
+  const itemsPerPage = 10; // Number of items to display per page
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
@@ -17,6 +17,7 @@ const VerPaises = () => {
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
+    setCount(1); // Reset the page count when a new search term is entered
   };
 
   const filteredData = data
@@ -24,8 +25,32 @@ const VerPaises = () => {
         auxpais.name.common.toLowerCase().includes(searchTerm.toLowerCase())
       )
     : [];
+
   const handleInfoClick = (pais) => {
     setSelectedCountry(pais);
+  };
+
+  // Get the data to display for the current page
+  const paginatedData = filteredData.slice(
+    (count - 1) * itemsPerPage,
+    count * itemsPerPage
+  );
+
+  // Calculate the total number of pages
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  // Function to handle next page
+  const handleNextPage = () => {
+    if (count * itemsPerPage < filteredData.length) {
+      setCount((prevCount) => prevCount + 1);
+    }
+  };
+
+  // Function to handle previous page
+  const handlePrevPage = () => {
+    if (count > 1) {
+      setCount((prevCount) => prevCount - 1);
+    }
   };
 
   return (
@@ -58,10 +83,9 @@ const VerPaises = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredData.map((auxpais, index) => (
+            {paginatedData.map((auxpais, index) => (
               <tr key={auxpais.name.common}>
-                <td>{count + index}</td>
-
+                <td>{(count - 1) * itemsPerPage + index + 1}</td>
                 <td>
                   <img src={auxpais.flags.svg} alt={auxpais.name.common} />
                 </td>
@@ -81,9 +105,22 @@ const VerPaises = () => {
             ))}
           </tbody>
         </table>
+        <div className="pagination">
+          <button onClick={handlePrevPage} disabled={count === 1}>
+            Previous
+          </button>
+          <span>{`Page ${count} of ${totalPages}`}</span>
+          <button
+            onClick={handleNextPage}
+            disabled={count * itemsPerPage >= filteredData.length}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </section>
   );
 };
 
 export default VerPaises;
+
