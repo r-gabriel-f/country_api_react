@@ -26,24 +26,18 @@ export const NavBar = () => {
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand">
           Api Paises
         </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
+        <button className="navbar-toggler" type="button" onClick={toggleMenu}>
+          <span className="navbar-toggler-icon"></span>
         </button>
 
         <div
-          class="collapse navbar-collapse justify-content-end"
+          
           id="navbarSupportedContent"
+          className={`collapse navbar-collapse justify-content-end ${isMenuOpen ? "show" : ""}`}
+
         >
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item active mx-3">

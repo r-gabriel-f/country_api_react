@@ -70,7 +70,7 @@ const VerPaises = () => {
         </button>
       </div>
       <div className="paises">
-        <table>
+        <table className="tabla-paises">
           <thead>
             <tr>
               <th>N°</th>
@@ -92,13 +92,13 @@ const VerPaises = () => {
                 <td>{auxpais.name.common}</td>
                 <td>{auxpais.capital}</td>
                 <td>{auxpais.continents}</td>
-                <td>{auxpais.population}</td>
+                <td>{auxpais.population.toLocaleString()}</td>
                 <td>
                   <Link
                     to={`/pais/${auxpais.name.common}`}
                     onClick={() => handleInfoClick(auxpais)}
                   >
-                    info
+                    Información
                   </Link>
                 </td>
               </tr>
