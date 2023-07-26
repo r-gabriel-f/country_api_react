@@ -1,32 +1,30 @@
-import { React, useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export const NavBar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedinicio, setSelectedinicio] = useState("Paises"); // Inicializar con "Asia"
+  const [isMenuOpen, setIsMenuOpen] = useState(true); // Set isMenuOpen to true initially
 
-  const handleinicioClick = (inicio) => {
-    setSelectedinicio(inicio);
-  };
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  window.scrollTo({ top: 0, behavior: "smooth" });
   const navigate = useNavigate();
 
-  //inicio
+  useEffect(() => {
+    // Navigate to "/paises" when the component mounts
+    navigate("/paises");
+  }, []); // Empty dependency array ensures this runs only once, on mount
+
   const handlePaisesClick = () => {
     navigate("/paises");
     setIsMenuOpen(false);
   };
 
-  //institucion
   const handleRegionnClick = () => {
     navigate("/region");
     setIsMenuOpen(false);
   };
+
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container-fluid">
@@ -43,19 +41,11 @@ export const NavBar = () => {
         >
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item active mx-3">
-             
-
               <Link
-              className={`nav-link ${
-                selectedinicio === "Paises" ? "active" : ""
-              }`}
-                
+                class="nav-link"
                 aria-current="page"
                 to="/paises"
-                onClick={() => {
-                  handlePaisesClick();
-                  handleinicioClick("Paises");
-                }}
+                onClick={handlePaisesClick}
               >
                 Paises
               </Link>
@@ -76,3 +66,4 @@ export const NavBar = () => {
     </nav>
   );
 };
+
