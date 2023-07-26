@@ -2,7 +2,7 @@ import { React, useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 
-export const NavBar = () => {
+const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -18,7 +18,7 @@ export const NavBar = () => {
     setIsMenuOpen(false);
   };
 
-  //institucion
+  //region
   const handleRegionnClick = () => {
     navigate("/region");
     setIsMenuOpen(false);
@@ -64,3 +64,4 @@ export const NavBar = () => {
     </nav>
   );
 };
+export default NavBar;
