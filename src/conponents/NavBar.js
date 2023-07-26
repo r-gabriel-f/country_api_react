@@ -1,30 +1,28 @@
-import React, { useState, useEffect } from "react";
+import { React, useState } from "react";
+
 import { Link, useNavigate } from "react-router-dom";
 
 export const NavBar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(true); // Set isMenuOpen to true initially
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  window.scrollTo({ top: 0, behavior: "smooth" });
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Navigate to "/paises" when the component mounts
-    navigate("/paises");
-  }, []); // Empty dependency array ensures this runs only once, on mount
-
+  //inicio
   const handlePaisesClick = () => {
-    navigate("/paises");
+    navigate("/");
     setIsMenuOpen(false);
   };
 
+  //institucion
   const handleRegionnClick = () => {
     navigate("/region");
     setIsMenuOpen(false);
   };
-
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container-fluid">
@@ -44,7 +42,7 @@ export const NavBar = () => {
               <Link
                 class="nav-link"
                 aria-current="page"
-                to="/paises"
+                to="/"
                 onClick={handlePaisesClick}
               >
                 Paises
@@ -66,4 +64,3 @@ export const NavBar = () => {
     </nav>
   );
 };
-

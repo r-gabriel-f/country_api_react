@@ -20,10 +20,10 @@ function App() {
       <div>
         <NavBar />
         <Routes>
-          <Route path="/paises" element={<VerPaises />} />
+          <Route path="/" element={<VerPaises />} />
           <Route path="/region" element={<VerRegion />} />
           <Route path="/pais/:countryName" element={<CountryInfo data={data} />} />
-        
+          {/*<Route path="/" element={<Navigate to="/paises" />} />*/}
 
           {/* Resto de las rutas */}
         </Routes>
