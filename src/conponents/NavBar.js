@@ -3,8 +3,12 @@ import { React, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export const NavBar = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedinicio, setSelectedinicio] = useState("Paises"); // Inicializar con "Asia"
 
+  const handleinicioClick = (inicio) => {
+    setSelectedinicio(inicio);
+  };
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -26,32 +30,38 @@ export const NavBar = () => {
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand">
-          Api Paises
-        </a>
+        <a class="navbar-brand">Api Paises</a>
         <button className="navbar-toggler" type="button" onClick={toggleMenu}>
           <span className="navbar-toggler-icon"></span>
         </button>
 
         <div
-          
           id="navbarSupportedContent"
-          className={`collapse navbar-collapse justify-content-end ${isMenuOpen ? "show" : ""}`}
-
+          className={`collapse navbar-collapse justify-content-end ${
+            isMenuOpen ? "show" : ""
+          }`}
         >
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item active mx-3">
-            <Link
-                class="nav-link"
+             
+
+              <Link
+              className={`nav-link ${
+                selectedinicio === "Paises" ? "active" : ""
+              }`}
+                
                 aria-current="page"
                 to="/paises"
-                onClick={handlePaisesClick}
+                onClick={() => {
+                  handlePaisesClick();
+                  handleinicioClick("Paises");
+                }}
               >
                 Paises
               </Link>
             </li>
             <li class="nav-item active mx-3">
-            <Link
+              <Link
                 class="nav-link"
                 aria-current="page"
                 to="/region"

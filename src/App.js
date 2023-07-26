@@ -14,9 +14,7 @@ function App() {
       .then((data) => setData(data)); console.log(data);
     
   }, []);
-  useEffect(() => {
-    window.location.href = '/paises';
-  }, []);
+  
   return (
     <Router>
       <div>
@@ -25,7 +23,7 @@ function App() {
           <Route path="/paises" element={<VerPaises />} />
           <Route path="/region" element={<VerRegion />} />
           <Route path="/pais/:countryName" element={<CountryInfo data={data} />} />
-          
+          <Route path="/" element={<Navigate to="/paises" />} />
 
           {/* Resto de las rutas */}
         </Routes>

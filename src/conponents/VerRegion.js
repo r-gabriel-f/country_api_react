@@ -15,9 +15,7 @@ export const VerRegion = () => {
       .then((data) => setData(data));
   }, []);
 
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-  };
+
 
   const handleRegionClick = (region) => {
     setSelectedRegion(region);
