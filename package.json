@@ -2,7 +2,7 @@
   "name": "country-api-react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://r-gabriel-f.github.io/country_api_react/",
+  "homepage": "http://r-gabriel-f.github.io/country_api_react/paises",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
