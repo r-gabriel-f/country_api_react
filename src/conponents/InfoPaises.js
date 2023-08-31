@@ -2,12 +2,12 @@ import React from "react";
 import "../conponents/InfoPaises.css";
 export const InfoPaises = ({ pais }) => {
   return (
-    <section className="container-info">
-      <div className="informacion">
+    <section className="container-info" style={{ backgroundImage: `url(${pais.flags.svg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="informacion" >
         <div className="pais-bandera">
           <h2>{pais.name.common}</h2>
           <img
-            src={pais.flags.svg}
+            src={pais.coatOfArms.svg}
             alt={pais.name.common}
             className="img-info"
           />

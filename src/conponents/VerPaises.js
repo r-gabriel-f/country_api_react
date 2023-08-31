@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 const VerPaises = () => {
   const [data, setData] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [count, setCount] = useState(1); // Track the current page
+  const [count, setCount] = useState(1);
   const [selectedCountry, setSelectedCountry] = useState(null);
-  const itemsPerPage = 10; // Number of items to display per page
+  const itemsPerPage = 10;
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
@@ -17,7 +17,7 @@ const VerPaises = () => {
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
-    setCount(1); // Reset the page count when a new search term is entered
+    setCount(1);
   };
 
   const filteredData = data
@@ -54,7 +54,7 @@ const VerPaises = () => {
   };
 
   return (
-    <section>
+    <section className="fondo-web">
       <div className="input-group">
         <input
           type="search"
@@ -65,9 +65,6 @@ const VerPaises = () => {
           value={searchTerm}
           onChange={handleSearch}
         />
-        <button type="button" className="btn btn-outline-primary">
-          Buscar
-        </button>
       </div>
       <div className="paises">
         <table className="tabla-paises">
@@ -94,12 +91,14 @@ const VerPaises = () => {
                 <td>{auxpais.continents}</td>
                 <td>{auxpais.population.toLocaleString()}</td>
                 <td>
-                  <Link
-                    to={`/pais/${auxpais.name.common}`}
-                    onClick={() => handleInfoClick(auxpais)}
-                  >
-                    Información
-                  </Link>
+                  <button>
+                    <Link
+                      to={`/pais/${auxpais.name.common}`}
+                      onClick={() => handleInfoClick(auxpais)}
+                    >
+                      Información
+                    </Link>
+                  </button>
                 </td>
               </tr>
             ))}
@@ -123,4 +122,3 @@ const VerPaises = () => {
 };
 
 export default VerPaises;
-

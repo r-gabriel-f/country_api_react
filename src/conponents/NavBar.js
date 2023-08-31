@@ -24,9 +24,9 @@ const NavBar = () => {
     setIsMenuOpen(false);
   };
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand">Api Paises</a>
+        <a class="navbar-brand text-light">Api Paises</a>
         <button className="navbar-toggler" type="button" onClick={toggleMenu}>
           <span className="navbar-toggler-icon"></span>
         </button>

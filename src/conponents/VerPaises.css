@@ -1,11 +1,17 @@
-.input-group {
+.fondo-web {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  margin-top: 50px;
+  background-image: url("../assets/fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+.input-group {
   max-width: 400px;
   margin: 0 auto;
-  margin-bottom: 20px;
-  margin-top: 80px;
+  margin-top: 20px;
 }
 
 .form-control {
@@ -18,7 +24,6 @@
 }
 
 .btn {
-
   padding: 6px 12px;
   font-size: 16px;
   border: 1px solid #007bff;
@@ -33,28 +38,41 @@
 }
 
 .paises {
-  margin-top: 20px;
+  margin: 20px;
 }
 
 /* Estilos para la tabla de países */
 .tabla-paises {
   width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+
 }
 
 .tabla-paises th,
 .tabla-paises td {
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   padding: 8px;
   text-align: left;
   text-align: center;
+  color: white;
 }
 
 .tabla-paises th {
-  background-color: #f2f2f2;
+  background-color: #007bff;
 }
-
+.tabla-paises button {
+  margin: 0 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+.tabla-paises a {
+  text-decoration: none;
+  color: white;
+}
 .tabla-paises img {
   width: 40px;
   height: 30px;
@@ -87,7 +105,7 @@
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
-  margin-top: 80px;
+  margin-top: 20px;
 }
 
 .pagination {
@@ -119,10 +137,11 @@
 
 .pagination span {
   margin: 0 10px;
+  color: white;
 }
 
-@media screen and (max-width: 767px) {
 
+@media screen and (max-width: 767px) {
   .tabla-paises img {
     max-width: 30px;
     max-height: 20px;

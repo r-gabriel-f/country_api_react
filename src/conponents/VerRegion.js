@@ -15,8 +15,6 @@ export const VerRegion = () => {
       .then((data) => setData(data));
   }, []);
 
-
-
   const handleRegionClick = (region) => {
     setSelectedRegion(region);
   };
@@ -35,7 +33,7 @@ export const VerRegion = () => {
   };
 
   return (
-    <section>
+    <section className="fondo-web">
       <div className="boton-opciones">
         <button
           type="button"
@@ -125,12 +123,14 @@ export const VerRegion = () => {
                 <td>{auxpais.capital}</td>
                 <td>{auxpais.population.toLocaleString()}</td>
                 <td>
-                  <Link
-                    to={`/pais/${auxpais.name.common}`}
-                    onClick={() => handleInfoClick(auxpais)}
-                  >
-                    Información
-                  </Link>
+                  <button>
+                    <Link
+                      to={`/pais/${auxpais.name.common}`}
+                      onClick={() => handleInfoClick(auxpais)}
+                    >
+                      Información
+                    </Link>
+                  </button>
                 </td>
               </tr>
             ))}
