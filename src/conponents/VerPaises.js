@@ -6,7 +6,7 @@ const VerPaises = () => {
   const [data, setData] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [count, setCount] = useState(1);
-  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [setSelectedCountry] = useState(null);
   const itemsPerPage = 10;
 
   useEffect(() => {
