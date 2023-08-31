@@ -24,9 +24,11 @@ const NavBar = () => {
     setIsMenuOpen(false);
   };
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-      <div class="container-fluid">
-        <a class="navbar-brand text-light">Api Paises</a>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+      <div className="container-fluid">
+        <Link className="navbar-brand text-light" to="/">
+          Api Paises
+        </Link>
         <button className="navbar-toggler" type="button" onClick={toggleMenu}>
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -37,10 +39,10 @@ const NavBar = () => {
             isMenuOpen ? "show" : ""
           }`}
         >
-          <ul class="navbar-nav mb-2 mb-lg-0">
-            <li class="nav-item active mx-3">
+          <ul className="navbar-nav mb-2 mb-lg-0">
+            <li className="nav-item active mx-3">
               <Link
-                class="nav-link"
+                className="nav-link"
                 aria-current="page"
                 to="/"
                 onClick={handlePaisesClick}
@@ -48,9 +50,9 @@ const NavBar = () => {
                 Paises
               </Link>
             </li>
-            <li class="nav-item active mx-3">
+            <li className="nav-item active mx-3">
               <Link
-                class="nav-link"
+                className="nav-link"
                 aria-current="page"
                 to="/region"
                 onClick={handleRegionnClick}

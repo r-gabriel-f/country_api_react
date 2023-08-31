@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 export const VerRegion = () => {
   const [data, setData] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("Asia"); // Inicializar con "Asia"
-  const [count, setCount] = useState(1);
-  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [count] = useState(1);
+  const [ setSelectedCountry] = useState(null);
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")

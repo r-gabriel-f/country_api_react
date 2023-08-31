@@ -17,9 +17,10 @@ function App() {
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
       .then((response) => response.json())
-      .then((data) => setData(data));
-      console.log(data);
-
+      .then((data) => {
+        setData(data);
+        console.log(data);
+      });
   }, []);
 
   return (
