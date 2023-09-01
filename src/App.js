@@ -4,40 +4,30 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import { React, useState, useEffect } from "react";
+import { React} from "react";
 
 import { VerRegion } from "./conponents/VerRegion";
 import CountryInfo from "./conponents/CountryInfo";
 import VerPaises from "./conponents/VerPaises";
 import NavBar from "./conponents/NavBar";
+import { Datos } from "./conponents/Datos";
 
 function App() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
-      .then((response) => response.json())
-      .then((data) => {
-        setData(data);
-        console.log(data);
-      });
-  }, []);
+  const data = Datos();
 
   return (
-
-      <Router>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<VerPaises />} />
-          <Route path="/region" element={<VerRegion />} />
-          <Route
-            path="/pais/:countryName"
-            element={<CountryInfo data={data} />}
-          />
-          <Route path="/*" element={<Navigate to="/" />} />
-        </Routes>
-      </Router>
-
+    <Router>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<VerPaises data={data} />} />
+        <Route path="/region" element={<VerRegion data={data}/>} />
+        <Route
+          path="/pais/:countryName"
+          element={<CountryInfo data={data} />}
+        />
+        <Route path="/*" element={<Navigate to="/" />} />
+      </Routes>
+    </Router>
   );
 }
 

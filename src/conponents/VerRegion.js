@@ -1,36 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../conponents/VerPaises.css";
 import { Link } from "react-router-dom";
 
-export const VerRegion = () => {
-  const [data, setData] = useState(null);
-  const [searchTerm, setsearchTerm] = useState("");
-  const [selectedRegion, setSelectedRegion] = useState("Asia"); // Inicializar con "Asia"
-  const [count, setcount] = useState(1);
-  const [SelectedCountry, setSelectedCountry] = useState(null);
-
-  useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
-      .then((response) => response.json())
-      .then((data) => setData(data));
-  }, []);
+export const VerRegion = ({ data }) => {
+  const [selectedRegion, setSelectedRegion] = useState("Asia");
 
   const handleRegionClick = (region) => {
     setSelectedRegion(region);
   };
 
   const filteredData = data
-    ? data.filter(
-        (auxpais) =>
-          auxpais.name.common
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase()) &&
-          (selectedRegion === "" || auxpais.continents.includes(selectedRegion))
-      )
+    ? data.filter((auxpais) => auxpais.continents.includes(selectedRegion))
     : [];
-  const handleInfoClick = (pais) => {
-    setSelectedCountry(pais);
-  };
 
   return (
     <section className="fondo-web">
@@ -115,7 +96,7 @@ export const VerRegion = () => {
           <tbody>
             {filteredData.map((auxpais, index) => (
               <tr key={auxpais.name.common}>
-                <td>{count + index}</td>
+                <td>{index + 1}</td>
                 <td>
                   <img src={auxpais.flags.svg} alt={auxpais.name.common} />
                 </td>
@@ -124,12 +105,7 @@ export const VerRegion = () => {
                 <td>{auxpais.population.toLocaleString()}</td>
                 <td>
                   <button>
-                    <Link
-                      to={`/pais/${auxpais.name.common}`}
-                      onClick={() => handleInfoClick(auxpais)}
-                    >
-                      Información
-                    </Link>
+                    <Link to={`/pais/${auxpais.name.common}`}>Información</Link>
                   </button>
                 </td>
               </tr>

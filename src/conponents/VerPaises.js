@@ -1,57 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import "../conponents/VerPaises.css";
 import { Link } from "react-router-dom";
 
-const VerPaises = () => {
-  const [data, setData] = useState(null);
+const VerPaises = ({data}) => {
+  
   const [searchTerm, setSearchTerm] = useState("");
   const [count, setCount] = useState(1);
-  const [SelectedCountry, setSelectedCountry] = useState(null);
   const itemsPerPage = 10;
 
-  useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
-      .then((response) => response.json())
-      .then((data) => setData(data));
-  }, []);
-
+  
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
-    setCount(1);
   };
-
   const filteredData = data
     ? data.filter((auxpais) =>
         auxpais.name.common.toLowerCase().includes(searchTerm.toLowerCase())
       )
     : [];
-
-  const handleInfoClick = (pais) => {
-    setSelectedCountry(pais);
-  };
-
-  // Get the data to display for the current page
-  const paginatedData = filteredData.slice(
-    (count - 1) * itemsPerPage,
-    count * itemsPerPage
-  );
-
-  // Calculate the total number of pages
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-
-  // Function to handle next page
   const handleNextPage = () => {
     if (count * itemsPerPage < filteredData.length) {
       setCount((prevCount) => prevCount + 1);
     }
   };
-
-  // Function to handle previous page
   const handlePrevPage = () => {
     if (count > 1) {
       setCount((prevCount) => prevCount - 1);
     }
   };
+  const paginatedData = filteredData.slice(
+    (count - 1) * itemsPerPage,
+    count * itemsPerPage
+  );
+
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
   return (
     <section className="fondo-web">
@@ -94,7 +75,6 @@ const VerPaises = () => {
                   <button>
                     <Link
                       to={`/pais/${auxpais.name.common}`}
-                      onClick={() => handleInfoClick(auxpais)}
                     >
                       Información
                     </Link>

@@ -1,6 +1,6 @@
 {
   "name": "country-api-react",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "private": true,
   "homepage": "http://r-gabriel-f.github.io/country_api_react/",
   "dependencies": {

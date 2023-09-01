@@ -2,12 +2,11 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { InfoPaises } from './InfoPaises';
 
-const CountryInfo = ({ data }) => { // Recibe data como una prop
+const CountryInfo = ({ data }) => {
     const { countryName } = useParams();
 
-    // Busca el país en data
     const selectedCountry = data.find(
-      (auxpais) => auxpais.name.common.toLowerCase() === countryName.toLowerCase()
+      (auxpais) => auxpais.name.common === countryName
     );
   
     return (
