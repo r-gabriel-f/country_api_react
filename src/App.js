@@ -4,13 +4,13 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import { React} from "react";
+import { React } from "react";
 
-import { VerRegion } from "./conponents/VerRegion";
-import CountryInfo from "./conponents/CountryInfo";
-import VerPaises from "./conponents/VerPaises";
-import NavBar from "./conponents/NavBar";
-import { Datos } from "./conponents/Datos";
+import { Datos } from "./conponents/Datos/Datos";
+import VerPaises from "./conponents/VerPaises/VerPaises";
+import { VerRegion } from "./conponents/VerRegion/VerRegion";
+import CountryInfo from "./conponents/CountryInfo/CountryInfo";
+import NavBar from "./conponents/NavBar/NavBar";
 
 function App() {
   const data = Datos();
@@ -20,7 +20,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<VerPaises data={data} />} />
-        <Route path="/region" element={<VerRegion data={data}/>} />
+        <Route path="/region" element={<VerRegion data={data} />} />
         <Route
           path="/pais/:countryName"
           element={<CountryInfo data={data} />}
