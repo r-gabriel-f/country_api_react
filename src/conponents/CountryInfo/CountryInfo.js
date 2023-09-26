@@ -11,7 +11,7 @@ const CountryInfo = ({ data }) => {
   
     return (
       <section className='seleccion'>
-        {selectedCountry && <InfoPaises pais={selectedCountry} />}
+        {<InfoPaises pais={selectedCountry} />}
       </section>
     );
 };
